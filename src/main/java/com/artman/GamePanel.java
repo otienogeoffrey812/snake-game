@@ -51,6 +51,8 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     public void draw(Graphics g){
 
+        if(running) {
+
             for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
                 g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
@@ -75,7 +77,11 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.RED);
             g.setFont(new Font("Ink Free", Font.BOLD, 40));
             FontMetrics metrics = getFontMetrics(g.getFont());
-            g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
+            g.drawString("Score: " + applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: " + applesEaten)) / 2, g.getFont().getSize());
+
+        } else{
+            gameOver(g);
+        }
 
     }
     public void move(){
@@ -139,8 +145,24 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
 
-    public void gameOver(Graphics graphics){
+    public void gameOver(Graphics g){
+        //Score
+        g.setColor(Color.RED);
+        g.setFont(new Font("Ink Free", Font.BOLD, 40));
+        FontMetrics metrics1 = getFontMetrics(g.getFont());
+        g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
 
+        //GameOver
+        g.setColor(Color.RED);
+        g.setFont(new Font("Ink Free", Font.BOLD, 75));
+        FontMetrics metrics2 = getFontMetrics(g.getFont());
+        g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);g.setColor(Color.RED);
+
+        //Start new game
+        g.setColor(Color.GREEN);
+        g.setFont(new Font("Ink Free", Font.BOLD, 20));
+        FontMetrics metrics3 = getFontMetrics(g.getFont());
+        g.drawString("Press space to start new game", (SCREEN_WIDTH - metrics3.stringWidth("Press space to start new game"))/2, SCREEN_HEIGHT/2 + g.getFont().getSize()*2);
     }
 
     @Override
