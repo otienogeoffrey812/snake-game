@@ -69,13 +69,11 @@ public class GamePanel extends JPanel implements ActionListener {
             g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
 
     }
-
     public void move(){
 
     }
 
     public void checkApple(){
-
     }
 
     public void checkCollisions(){
